@@ -1,0 +1,176 @@
+{% extends "base.html" %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% block tittle %}
+    {{ produto.nome }}
+    {% endblock %}
+</head>
+{% block pagina %}
+<body class="animsition">
+
+
+  <!-- Product Detail -->
+  <div class="container bgwhite p-t-35 p-b-80">
+    <div class="flex-w flex-sb">
+      <div class="w-size13 p-t-30 respon5">
+        <div class="wrap-slick3 flex-sb flex-w">
+          <div class="wrap-slick3-dots"></div>
+
+          <div class="slick3">
+            <div class="item-slick3" data-thumb="https://img.elo7.com.br/product/zoom/10F2018/camiseta-jake-no-bolso-hora-de-aventura-finn.jpg">
+              <div class="wrap-pic-w">
+                <img src="https://img.elo7.com.br/product/zoom/10F2018/camiseta-jake-no-bolso-hora-de-aventura-finn.jpg" alt="IMG-PRODUCT">
+              </div>
+            </div>
+
+            <div class="item-slick3" data-thumb="https://http2.mlstatic.com/camiseta-the-last-of-us-hora-de-aventura-adventure-time-D_NQ_NP_205711-MLB20613552430_032016-F.jpg">
+              <div class="wrap-pic-w">
+                <img src="https://http2.mlstatic.com/camiseta-the-last-of-us-hora-de-aventura-adventure-time-D_NQ_NP_205711-MLB20613552430_032016-F.jpg" alt="IMG-PRODUCT">
+              </div>
+            </div>
+
+            <div class="item-slick3" data-thumb="https://i.pinimg.com/originals/c7/61/90/c761909fc5417e6682f39e4c1c6d56fd.jpg">
+              <div class="wrap-pic-w">
+                <img src="https://i.pinimg.com/originals/c7/61/90/c761909fc5417e6682f39e4c1c6d56fd.jpg" alt="IMG-PRODUCT">
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="w-size14 p-t-30 respon5">
+        <h4 class="product-detail-name m-text16 p-b-13">
+          {{ produto.nome }}
+        </h4>
+
+        <span class="m-text17">
+          R$ {{ produto.price }}
+        </span>
+
+        <p class="s-text8 p-t-10">
+          {{ produto.descricao }}
+        </p>
+
+        <!--  -->
+        <div class="p-t-33 p-b-60">
+          <div class="flex-m flex-w p-b-10">
+            <div class="s-text15 w-size15 t-center">
+              Tamanho
+            </div>
+
+            <div class="rs2-select2 rs3-select2 bo4 of-hidden w-size16">
+              <select class="selection-2" name="size">
+                <option>Escolha um tamanho</option>
+                <option>P</option>
+                <option>M</option>
+                <option>G</option>
+                <option>GG</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="flex-m flex-w">
+            <div class="s-text15 w-size15 t-center">
+              Cor
+            </div>
+
+            <div class="rs2-select2 rs3-select2 bo4 of-hidden w-size16">
+              <select class="selection-2" name="color">
+                <option>Escolha uma cor</option>
+                <option>Cinza</option>
+                <option>Rosa</option>
+                <option>Azul</option>
+                <option>Preto</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="flex-r-m flex-w p-t-10">
+            <div class="w-size16 flex-m flex-w">
+
+
+              <div class="btn-addcart-product-detail size9 trans-0-4 m-t-10 m-b-10">
+                <!-- Button -->
+                <a href="/checkout/carrinho/adicionar/{{ produto.slug }}/" class="flex-c-m size1 bg4 bo-rad-23 hov1 s-text1 trans-0-4" role="button">Adicionar</a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="p-b-45">
+          <span class="s-text8 m-r-35">SKU: MUG-01</span>
+          <span class="s-text8">Categories: Mug, Design</span>
+        </div>
+
+        <!--  -->
+      </div>
+    </div>
+  </div>
+
+
+
+
+    </div>
+  </section>
+
+  <!-- Back to top -->
+  <div class="btn-back-to-top bg0-hov" id="myBtn">
+    <span class="symbol-btn-back-to-top">
+      <i class="fa fa-angle-double-up" aria-hidden="true"></i>
+    </span>
+  </div>
+
+  <!-- Container Selection -->
+  <div id="dropDownSelect1"></div>
+  <div id="dropDownSelect2"></div>
+
+
+
+<!--===============================================================================================-->
+  <script type="text/javascript" src="/static/vendor/jquery/jquery-3.2.1.min.js"></script>
+<!--===============================================================================================-->
+  <script type="text/javascript" src="/static/vendor/animsition/js/animsition.min.js"></script>
+<!--===============================================================================================-->
+  <script type="text/javascript" src="/static/vendor/select2/select2.min.js"></script>
+  <script type="text/javascript">
+    $(".selection-1").select2({
+      minimumResultsForSearch: 20,
+      dropdownParent: $('#dropDownSelect1')
+    });
+
+    $(".selection-2").select2({
+      minimumResultsForSearch: 20,
+      dropdownParent: $('#dropDownSelect2')
+    });
+  </script>
+<!--===============================================================================================-->
+  <script type="text/javascript" src="/static/vendor/sweetalert/sweetalert.min.js"></script>
+  <script type="text/javascript">
+    $('.block2-btn-addcart').each(function(){
+      var nameProduct = $(this).parent().parent().parent().find('.block2-name').html();
+      $(this).on('click', function(){
+        swal(nameProduct, "is added to cart !", "success");
+      });
+    });
+
+    $('.block2-btn-addwishlist').each(function(){
+      var nameProduct = $(this).parent().parent().parent().find('.block2-name').html();
+      $(this).on('click', function(){
+        swal(nameProduct, "is added to wishlist !", "success");
+      });
+    });
+
+    $('.btn-addcart-product-detail').each(function(){
+      var nameProduct = $('.product-detail-name').html();
+      $(this).on('click', function(){
+        swal(nameProduct, "is added to wishlist !", "success");
+      });
+    });
+  </script>
+
+<!--===============================================================================================-->
+  <script src="/static/js/main.js"></script>
+{% endblock %}
+</body>
+</html>

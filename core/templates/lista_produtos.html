@@ -1,0 +1,81 @@
+{% extends "base.html" %}
+{% load pagination %}
+
+{% block tittle %} Lista de Produtos | {{ block.super }} {% endblock %}
+
+{% block pagina %}
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+
+<section class="parallax0 parallax100" style="background-image: url(/static/images/icons/banner_produto.jpg); background-position: center -29.6146px; height: 50%">
+        <div class="overlay0 p-t-40 vitrine">
+            <div class="flex-col-c-m p-l-15 p-r-15">
+                <span class="m-text9 p-t-45 fs-20-sm">
+                    <br>
+                </span>
+
+                <h3 class="l-text1 fs-35-sm">
+                    Todos os produtos
+                </h3>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- Content page -->
+    <section class="bgwhite p-t-55 p-b-65">
+    {% include 'menu_produto.html' %}        
+
+                    <!-- Product -->
+                    <div class="row">
+                        {% for produto in lista_produtos %}
+                        <div class="col-sm-12 col-md-6 col-lg-4 p-b-50">
+                            <!-- Block2 -->
+                            <div class="block2">
+                                <div id="myDIV">
+                                <div class="block2-img wrap-pic-w of-hidden pos-relative block2-labelnew">
+                                    <img src="https://img.elo7.com.br/product/zoom/10F2018/camiseta-jake-no-bolso-hora-de-aventura-finn.jpg" alt="IMG-PRODUCT">
+
+                                    <div class="block2-overlay trans-0-4">
+                                        <div class="block2-btn-addcart w-size1 trans-0-4">
+                                            <!-- Button -->
+                                            <a href="/checkout/carrinho/adicionar/{{ produto.slug }}/" class="flex-c-m size1 bg4 bo-rad-23 hov1 s-text1 trans-0-4" role="button">Adicionar</a>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="block2-txt p-t-20">
+                                    <a href="{{ produto.get_store_url }}" class="block2-name dis-block s-text3 p-b-5">
+                                        {{ produto.nome }}
+                                    </a>
+
+                                    <span class="block2-price m-text6 p-r-5">
+                                        R$ {{ produto.price }}
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                        {% endfor %}
+                    </div>
+
+                    <!-- Pagination -->
+                    <div class="pagination flex-m flex-w p-t-26">
+                        <a href="#" class="item-pagination flex-c-m trans-0-4 active-pagination">1</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Container Selection -->
+    <div id="dropDownSelect1"></div>
+    <div id="dropDownSelect2"></div>
+
+<!--===============================================================================================-->
+
+
+</body>
+</html>
+
+{% endblock %}
